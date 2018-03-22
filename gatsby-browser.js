@@ -6,17 +6,16 @@ import { Provider } from 'react-redux';
 import createStore from './src/store';
 
 const propTypes = {
-    children: PropTypes.node.isRequired
-  };
+  children: PropTypes.node.isRequired
+};
 
 const store = createStore();
 
-exports.replaceRouterComponent = function replaceRouterComponent({ history }) {
-
+const replaceRouterComponent = function replaceRouterComponent({ history }) {
   function ConnectedRouterWrapper({ children }) {
-      return (
-      <Provider store={ store }>
-        <Router history={ history }>{ children }</Router>
+    return (
+      <Provider store={store}>
+        <Router history={history}>{children}</Router>
       </Provider>
     );
   }
@@ -26,3 +25,7 @@ exports.replaceRouterComponent = function replaceRouterComponent({ history }) {
   return ConnectedRouterWrapper;
 };
 
+if (typeof exports !== 'undefined') {
+  exports.replaceRouterComponent = exports.replaceRouterComponent;
+}
+export { replaceRouterComponent };
