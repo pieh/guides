@@ -16,24 +16,12 @@ export default class HTML extends React.Component {
   render() {
     const head = Helmet.rewind();
 
-    let css;
-    if (process.env.NODE_ENV === 'production') {
-      css = (
-        <style
-          dangerouslySetInnerHTML={{
-            __html: require('!raw-loader!../public/styles.css')
-          }}
-        />
-      );
-    }
-
     return (
       <html lang='en'>
         <head>
           { preloads }
           { this.props.headComponents }
           { metaAndStyleSheets }
-          { css }
           <title>freeCodeCamp Guide</title>
         </head>
         <body>
